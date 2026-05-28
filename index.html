@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AzusaWebList — 网址导航</title>
+  <meta name="description" content="一个简洁优雅的网址导航 / 个人收藏夹。" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🌸</text></svg>" />
+</head>
+<body>
+  <!-- 全局背景层 -->
+  <div class="page-bg" id="pageBg"></div>
+  <div class="page-bg-mask"></div>
+  <canvas class="petals-canvas" id="petalsCanvas"></canvas>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-logo">🌸</span>
+      <span class="brand-name">AzusaWebList</span>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sidebar-footer">
+      <div class="uptime" id="uptime">已稳定运行 0 天</div>
+      <div class="version">v1.1 · © 2026</div>
+    </div>
+  </aside>
+
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切换侧边栏">☰</button>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-meta" id="heroMeta">
+          <span class="hero-greeting" id="greeting"></span>
+          <span class="hero-clock" id="clock"></span>
+        </div>
+        <h1 class="hero-title" id="heroTitle">AzusaWebList</h1>
+        <p class="hero-subtitle" id="heroSubtitle"></p>
+        <div class="search-wrap">
+          <div class="engines" id="engines">
+            <button class="engine-btn active" data-engine="local" title="站内搜索">📚</button>
+            <button class="engine-btn" data-engine="google" title="Google">🌐</button>
+            <button class="engine-btn" data-engine="bing" title="Bing">Ⓑ</button>
+            <button class="engine-btn" data-engine="baidu" title="百度">百</button>
+            <button class="engine-btn" data-engine="ddg" title="DuckDuckGo">🦆</button>
+          </div>
+          <input id="searchInput" type="text" placeholder="搜索网站、关键词、分类…" autocomplete="off" />
+          <button class="search-clear" id="searchClear" title="清除" hidden>✕</button>
+          <kbd class="kbd">/</kbd>
+        </div>
+        <div class="hero-tip">⌨️ <kbd>/</kbd> 搜索 · <kbd>?</kbd> 快捷键 · 回车直达</div>
+        <div class="hero-tags" id="heroTags"></div>
+      </div>
+      <button class="wp-shuffle" id="wpShuffle" title="换张壁纸">🔀</button>
+    </section>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-left" id="resultInfo"></div>
+      <div class="toolbar-right">
+        <button class="chip active" data-sort="default">默认</button>
+        <button class="chip" data-sort="name">名称</button>
+      </div>
+    </div>
+
+    <!-- Categories Container -->
+    <section class="content" id="content"></section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2026 AzusaWebList · 内容来自互联网，如有侵权请联系删除</p>
+      <p>Built with ❤ · <a href="admin.html">后台</a></p>
+    </footer>
+  </main>
+
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+
+  <!-- 移动端侧边栏遮罩 -->
+  <div class="sidebar-mask" id="sidebarMask"></div>
+
+  <!-- 右键菜单 -->
+  <div class="ctx-menu" id="ctxMenu" hidden>
+    <button data-act="open">↗ 新标签打开</button>
+    <button data-act="open-self">⤴ 当前页打开</button>
+    <button data-act="copy">📋 复制链接</button>
+    <button data-act="copy-name">✏️ 复制名称</button>
+    <hr/>
+    <button data-act="edit">⚙ 在后台编辑</button>
+  </div>
+
+  <!-- 快捷键帮助 -->
+  <div class="help-modal" id="helpModal" hidden>
+    <div class="help-box">
+      <div class="help-head">
+        <h3>⌨️ 键盘快捷键</h3>
+        <button class="icon-close" id="helpClose">✕</button>
+      </div>
+      <div class="help-body">
+        <div class="kbd-row"><kbd>/</kbd><span>聚焦搜索框</span></div>
+        <div class="kbd-row"><kbd>Esc</kbd><span>清空搜索 / 关闭弹窗</span></div>
+        <div class="kbd-row"><kbd>↵</kbd><span>用当前引擎搜索</span></div>
+        <div class="kbd-row"><kbd>?</kbd><span>显示这个帮助</span></div>
+        <div class="kbd-row"><kbd>g</kbd> <kbd>t</kbd><span>回到顶部</span></div>
+        <div class="kbd-row"><kbd>g</kbd> <kbd>a</kbd><span>打开后台</span></div>
+        <div class="kbd-row"><kbd>r</kbd><span>随机打开一个网站</span></div>
+        <div class="kbd-row"><kbd>w</kbd><span>切换壁纸</span></div>
+        <div class="kbd-row"><kbd>d</kbd><span>切换深色模式</span></div>
+        <div class="kbd-row"><kbd>s</kbd><span>撒花 🌸</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
